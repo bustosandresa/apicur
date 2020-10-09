@@ -1,0 +1,1063 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Digitalizacion",
+        "version": "1.0.0",
+        "description": "API Sistema de Carga de Documentos SRC"
+    },
+    "paths": {
+        "/api/contratistas/": {
+            "summary": "Contratistas",
+            "description": "Operacion para listar Contratistas",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Contratista"
+                                    }
+                                },
+                                "examples": {
+                                    "Caso Corto": {
+                                        "value": [
+                                            {
+                                                "razon_social": "CDA",
+                                                "cuit": "30412341147",
+                                                "idContratista": 43
+                                            },
+                                            {
+                                                "razon_social": "ACCENTURE",
+                                                "cuit": "30123697841",
+                                                "idContratista": 16
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "summary": "Contratistas",
+                "description": "Operacion para Listar todas las Contratistas Activas"
+            }
+        },
+        "/api/contratistas/{idcontratista}": {
+            "summary": "Contratista",
+            "description": "Operacion para Listar Informacion de una Contratista",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contratista"
+                                },
+                                "examples": {
+                                    "Consuta Puntual": {
+                                        "value": {
+                                            "razon_social": "CDA",
+                                            "cuit": 3014532321,
+                                            "idContratista": "475"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "summary": "Contratista",
+                "description": "Operacion para listar Informacion de una Contratista"
+            }
+        },
+        "/api/contratistas/{idcontratista}/empleados": {
+            "summary": "Empleados Contratista",
+            "description": "Operacion para Listar los Empleados de una Contratista",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Persona"
+                                    }
+                                },
+                                "examples": {
+                                    "Largo": {
+                                        "value": [
+                                            {
+                                                "idPersona": 132,
+                                                "nombre": "Mariano",
+                                                "apellido": "Dionnet",
+                                                "cuil": 245471231
+                                            },
+                                            {
+                                                "idPersona": 543,
+                                                "nombre": "Andres",
+                                                "apellido": "Bustos",
+                                                "cuil": 2471313123
+                                            },
+                                            {
+                                                "idPersona": 782,
+                                                "nombre": "Patricio",
+                                                "apellido": "Gianni",
+                                                "cuil": 2471313376
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "summary": "Empleados Contratista",
+                "description": "Opearcion para Listar todos los Empleados de una Contratista"
+            }
+        },
+        "/api/contratistas/{idcontratista}/vehiculos/": {
+            "summary": "Vehiculos Contratista",
+            "description": "Operacion para Listar los Vehiculos de una Contratista",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Vehiculo"
+                                    }
+                                },
+                                "examples": {
+                                    "Vehiculos": {
+                                        "value": [
+                                            {
+                                                "idVehiculo": 25,
+                                                "Patente": "some text",
+                                                "Interno": "some text",
+                                                "Chasis": "some text",
+                                                "CargaFuerza": "some text",
+                                                "Marca": "some text",
+                                                "Modelo": "some text",
+                                                "Cent": false
+                                            },
+                                            {
+                                                "idVehiculo": 90,
+                                                "Patente": "some text",
+                                                "Interno": "some text",
+                                                "Chasis": "some text",
+                                                "CargaFuerza": "some text",
+                                                "Marca": "some text",
+                                                "Modelo": "some text",
+                                                "Cent": true
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "summary": "Vehiculos Contratista",
+                "description": "Listar los Vehiculos de una Contratista"
+            }
+        },
+        "/api/contratistas/{idcontratista}/subcontratistas/": {
+            "summary": "Subcontratistas",
+            "description": "Operacion para Listar las Subcontratistas de una Contratista",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Contratista"
+                                    }
+                                },
+                                "examples": {
+                                    "Corto": {
+                                        "value": [
+                                            {
+                                                "razon_social": "HS",
+                                                "cuit": "30654234234",
+                                                "idContratista": 7841
+                                            },
+                                            {
+                                                "razon_social": "BLUE SKY",
+                                                "cuit": "30894563453",
+                                                "idContratista": 1674
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "summary": "Subcontratistas",
+                "description": "Operacion para Listar las Subcontratistas de una Contratista"
+            }
+        },
+        "/api/documentos/contratista/{idcontratista}/persona": {
+            "summary": "Listar Documentos Persona",
+            "description": "Operacion para Listar Documentos de tipo Persona una Contratista",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DocumentoPersonas"
+                                    }
+                                },
+                                "examples": {
+                                    "Documentos Persona": {
+                                        "value": [
+                                            {
+                                                "Documento": {
+                                                    "idDocumento": "some text",
+                                                    "idDocumentoReferencia": "some text",
+                                                    "idEstado": "AUD",
+                                                    "comentarios": "some text",
+                                                    "idRequisito": 38,
+                                                    "pathArchivo": "some text",
+                                                    "nombreArchvo": "some text",
+                                                    "formatoArchivo": "some text",
+                                                    "periodo": "some text",
+                                                    "fechaAlta": "2018-02-10T09:30Z",
+                                                    "fechaModificacion": "2018-02-10T09:30Z",
+                                                    "usuario": "some text"
+                                                },
+                                                "Personas": [
+                                                    {
+                                                        "nombre": "some text",
+                                                        "apellido": "some text",
+                                                        "cuil": "some text",
+                                                        "idPersona": 6
+                                                    },
+                                                    {
+                                                        "nombre": "some text",
+                                                        "apellido": "some text",
+                                                        "cuil": "some text",
+                                                        "idPersona": 65
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "Documento": {
+                                                    "idDocumento": "some text",
+                                                    "idDocumentoReferencia": "some text",
+                                                    "idEstado": "REC",
+                                                    "comentarios": "some text",
+                                                    "idRequisito": 56,
+                                                    "pathArchivo": "some text",
+                                                    "nombreArchvo": "some text",
+                                                    "formatoArchivo": "some text",
+                                                    "periodo": "some text",
+                                                    "fechaAlta": "2018-02-10T09:30Z",
+                                                    "fechaModificacion": "2018-02-10T09:30Z",
+                                                    "usuario": "some text"
+                                                },
+                                                "Personas": [
+                                                    {
+                                                        "nombre": "some text",
+                                                        "apellido": "some text",
+                                                        "cuil": "some text",
+                                                        "idPersona": 2
+                                                    },
+                                                    {
+                                                        "nombre": "some text",
+                                                        "apellido": "some text",
+                                                        "cuil": "some text",
+                                                        "idPersona": 46
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "summary": "Documentos Persona",
+                "description": "Operacion para Listar los Documentos de tipo Persona de una Contratista"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DocumentoPersonas"
+                                }
+                            },
+                            "examples": {
+                                "Documentos Persona": {
+                                    "value": [
+                                        {
+                                            "Documento": {
+                                                "idDocumento": "some text",
+                                                "idDocumentoReferencia": "some text",
+                                                "idEstado": "AUD",
+                                                "comentarios": "some text",
+                                                "idRequisito": 23,
+                                                "pathArchivo": "some text",
+                                                "nombreArchvo": "some text",
+                                                "formatoArchivo": "some text",
+                                                "periodo": "some text",
+                                                "fechaAlta": "2018-02-10T09:30Z",
+                                                "fechaModificacion": "2018-02-10T09:30Z",
+                                                "usuario": "some text"
+                                            },
+                                            "Personas": [
+                                                {
+                                                    "nombre": "some text",
+                                                    "apellido": "some text",
+                                                    "cuil": "some text",
+                                                    "idPersona": 48
+                                                },
+                                                {
+                                                    "nombre": "some text",
+                                                    "apellido": "some text",
+                                                    "cuil": "some text",
+                                                    "idPersona": 70
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Documento": {
+                                                "idDocumento": "some text",
+                                                "idDocumentoReferencia": "some text",
+                                                "idEstado": "REC",
+                                                "comentarios": "some text",
+                                                "idRequisito": 18,
+                                                "pathArchivo": "some text",
+                                                "nombreArchvo": "some text",
+                                                "formatoArchivo": "some text",
+                                                "periodo": "some text",
+                                                "fechaAlta": "2018-02-10T09:30Z",
+                                                "fechaModificacion": "2018-02-10T09:30Z",
+                                                "usuario": "some text"
+                                            },
+                                            "Personas": [
+                                                {
+                                                    "nombre": "some text",
+                                                    "apellido": "some text",
+                                                    "cuil": "some text",
+                                                    "idPersona": 67
+                                                },
+                                                {
+                                                    "nombre": "some text",
+                                                    "apellido": "some text",
+                                                    "cuil": "some text",
+                                                    "idPersona": 60
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "summary": "Documentos Personas",
+                "description": "Operacion para Grabar Carga Simple y Carga Múltiple de Documentos de tipo Persona"
+            }
+        },
+        "/api/documentos/contratista/{idcontratista}/vehiculo": {
+            "summary": "Documentos Vehiculos",
+            "description": "Operacion para Listar Documentos de Vehiculos de una Contratista",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DocumentoVehiculo"
+                                    }
+                                },
+                                "examples": {
+                                    "Documentos Vehiculos": {
+                                        "value": [
+                                            {
+                                                "Documento": {
+                                                    "idDocumento": "some text",
+                                                    "idDocumentoReferencia": "some text",
+                                                    "idEstado": "REC",
+                                                    "comentarios": "some text",
+                                                    "idRequisito": 46,
+                                                    "pathArchivo": "some text",
+                                                    "nombreArchvo": "some text",
+                                                    "formatoArchivo": "some text",
+                                                    "periodo": "some text",
+                                                    "fechaAlta": "2018-02-10T09:30Z",
+                                                    "fechaModificacion": "2018-02-10T09:30Z",
+                                                    "usuario": "some text"
+                                                },
+                                                "Vehiculos": [
+                                                    {
+                                                        "idVehiculo": 83,
+                                                        "Patente": "some text",
+                                                        "Interno": "some text",
+                                                        "Chasis": "some text",
+                                                        "CargaFuerza": "some text",
+                                                        "Marca": "some text",
+                                                        "Modelo": "some text",
+                                                        "Cent": true
+                                                    },
+                                                    {
+                                                        "idVehiculo": 63,
+                                                        "Patente": "some text",
+                                                        "Interno": "some text",
+                                                        "Chasis": "some text",
+                                                        "CargaFuerza": "some text",
+                                                        "Marca": "some text",
+                                                        "Modelo": "some text",
+                                                        "Cent": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "Documento": {
+                                                    "idDocumento": "some text",
+                                                    "idDocumentoReferencia": "some text",
+                                                    "idEstado": "PEN",
+                                                    "comentarios": "some text",
+                                                    "idRequisito": 64,
+                                                    "pathArchivo": "some text",
+                                                    "nombreArchvo": "some text",
+                                                    "formatoArchivo": "some text",
+                                                    "periodo": "some text",
+                                                    "fechaAlta": "2018-02-10T09:30Z",
+                                                    "fechaModificacion": "2018-02-10T09:30Z",
+                                                    "usuario": "some text"
+                                                },
+                                                "Vehiculos": [
+                                                    {
+                                                        "idVehiculo": 86,
+                                                        "Patente": "some text",
+                                                        "Interno": "some text",
+                                                        "Chasis": "some text",
+                                                        "CargaFuerza": "some text",
+                                                        "Marca": "some text",
+                                                        "Modelo": "some text",
+                                                        "Cent": true
+                                                    },
+                                                    {
+                                                        "idVehiculo": 76,
+                                                        "Patente": "some text",
+                                                        "Interno": "some text",
+                                                        "Chasis": "some text",
+                                                        "CargaFuerza": "some text",
+                                                        "Marca": "some text",
+                                                        "Modelo": "some text",
+                                                        "Cent": true
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "summary": "Documentos Vehiculo",
+                "description": "Operacion para Listar los Documentos de tipo Vehiculo de una Contratista"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/DocumentoVehiculo"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "summary": "Documentos Vehiculos",
+                "description": "Operacion para Grabar Carga Simple y Carga Múltiple de Documentos de tipo Vehiculo"
+            }
+        },
+        "/api/documentos/contratista/{idcontratista}/empresa": {
+            "summary": "Documentos Empresa",
+            "description": "Operacon para Listar Documentos de tipo Empresa de una Contratista"
+        },
+        "/api/contratista/{idcontratista}/requisitos": {
+            "summary": "Requisitos Contratista",
+            "description": "Operacion para Listar los Requisitos de una Contratista",
+            "get": {
+                "parameters": [
+                    {
+                        "name": "idcontratista",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RequisitosResponse"
+                                },
+                                "examples": {
+                                    "Requisitos": {
+                                        "value": {
+                                            "Status": {
+                                                "Code": "some text",
+                                                "Descripcion": "some text"
+                                            },
+                                            "Data": {
+                                                "Persona": [
+                                                    {
+                                                        "idRequisito": 99,
+                                                        "Requisito": "some text",
+                                                        "Frecuencia": "Permanente",
+                                                        "Tipo": "Regular",
+                                                        "Status": {
+                                                            "Aprobados": 49,
+                                                            "Pendientes": 26,
+                                                            "Rechazados": 63
+                                                        }
+                                                    },
+                                                    {
+                                                        "idRequisito": 99,
+                                                        "Requisito": "some text",
+                                                        "Frecuencia": "Mensual",
+                                                        "Tipo": "Especial",
+                                                        "Status": {
+                                                            "Aprobados": 41,
+                                                            "Pendientes": 68,
+                                                            "Rechazados": 25
+                                                        }
+                                                    }
+                                                ],
+                                                "Empresa": [
+                                                    {
+                                                        "idRequisito": 35,
+                                                        "Requisito": "some text",
+                                                        "Frecuencia": "Permanente",
+                                                        "Tipo": "Regular",
+                                                        "Status": {
+                                                            "Aprobados": 34,
+                                                            "Pendientes": 85,
+                                                            "Rechazados": 86
+                                                        }
+                                                    },
+                                                    {
+                                                        "idRequisito": 53,
+                                                        "Requisito": "some text",
+                                                        "Frecuencia": "Mensual",
+                                                        "Tipo": "Regular",
+                                                        "Status": {
+                                                            "Aprobados": 67,
+                                                            "Pendientes": 5,
+                                                            "Rechazados": 31
+                                                        }
+                                                    }
+                                                ],
+                                                "Vehiculo": [
+                                                    {
+                                                        "idRequisito": 5,
+                                                        "Requisito": "some text",
+                                                        "Frecuencia": "Mensual",
+                                                        "Tipo": "Especial",
+                                                        "Status": {
+                                                            "Aprobados": 77,
+                                                            "Pendientes": 15,
+                                                            "Rechazados": 39
+                                                        }
+                                                    },
+                                                    {
+                                                        "idRequisito": 47,
+                                                        "Requisito": "some text",
+                                                        "Frecuencia": "Permanente",
+                                                        "Tipo": "Regular",
+                                                        "Status": {
+                                                            "Aprobados": 55,
+                                                            "Pendientes": 95,
+                                                            "Rechazados": 66
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "summary": "Requisitos Contratista",
+                "description": "Operacion para Listar los Requisitos de una Contratista"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Persona": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "nombre": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "apellido": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "cuil": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "idPersona": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Contratista": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "razon_social": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "cuit": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "idContratista": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Documento": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "idDocumento": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "idDocumentoReferencia": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "idEstado": {
+                        "description": "",
+                        "enum": [
+                            "PEN",
+                            "REC",
+                            "AUD"
+                        ],
+                        "type": "string"
+                    },
+                    "comentarios": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "idRequisito": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "pathArchivo": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "nombreArchvo": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "formatoArchivo": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "periodo": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "fechaAlta": {
+                        "format": "date-time",
+                        "description": "",
+                        "type": "string"
+                    },
+                    "fechaModificacion": {
+                        "format": "date-time",
+                        "description": "",
+                        "type": "string"
+                    },
+                    "usuario": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "DocumentoPersonas": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "Documento": {
+                        "$ref": "#/components/schemas/Documento",
+                        "description": ""
+                    },
+                    "Personas": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Persona"
+                        }
+                    }
+                },
+                "example": {
+                    "Documento": [
+                        {
+                            "idDocumento": "some text",
+                            "idDocumentoReferencia": "some text",
+                            "idEstado": "some text",
+                            "comentarios": "some text",
+                            "idRequisito": 16,
+                            "pathArchivo": "some text",
+                            "nombreArchvo": "some text",
+                            "formatoArchivo": "some text",
+                            "periodo": "some text",
+                            "fechaAlta": "2018-02-10T09:30Z",
+                            "fechaModificacion": "2018-02-10T09:30Z",
+                            "usuario": "some text"
+                        },
+                        {
+                            "idDocumento": "some text",
+                            "idDocumentoReferencia": "some text",
+                            "idEstado": "some text",
+                            "comentarios": "some text",
+                            "idRequisito": 39,
+                            "pathArchivo": "some text",
+                            "nombreArchvo": "some text",
+                            "formatoArchivo": "some text",
+                            "periodo": "some text",
+                            "fechaAlta": "2018-02-10T09:30Z",
+                            "fechaModificacion": "2018-02-10T09:30Z",
+                            "usuario": "some text"
+                        }
+                    ],
+                    "Personas": [
+                        {
+                            "nombre": "some text",
+                            "apellido": "some text",
+                            "cuil": "some text",
+                            "idPersona": 69
+                        },
+                        {
+                            "nombre": "some text",
+                            "apellido": "some text",
+                            "cuil": "some text",
+                            "idPersona": 54
+                        }
+                    ]
+                }
+            },
+            "StatusDocumento": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "Aprobados": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Pendientes": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Rechazados": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Requisito": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "idRequisito": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Requisito": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Frecuencia": {
+                        "description": "Mensual o Permanente",
+                        "enum": [
+                            "Mensual",
+                            "Permanente"
+                        ],
+                        "type": "string"
+                    },
+                    "Tipo": {
+                        "description": "Regular o Especial",
+                        "enum": [
+                            "Regular",
+                            "Especial"
+                        ],
+                        "type": "string"
+                    },
+                    "Status": {
+                        "$ref": "#/components/schemas/StatusDocumento",
+                        "description": ""
+                    }
+                }
+            },
+            "Vehiculo": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "idVehiculo": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Patente": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Interno": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Chasis": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "CargaFuerza": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Marca": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Modelo": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Cent": {
+                        "description": "Habilitacion Consultora Ejecutiva Nacional de Transporte",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "DocumentoVehiculo": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "Documento": {
+                        "$ref": "#/components/schemas/Documento",
+                        "description": ""
+                    },
+                    "Vehiculos": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Vehiculo"
+                        }
+                    }
+                }
+            },
+            "Response": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "Code": {
+                        "description": "",
+                        "enum": [
+                        ],
+                        "type": "string"
+                    },
+                    "Descripcion": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Status": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "ResponseRequisitos": {
+                        "$ref": "#/components/schemas/Response",
+                        "description": ""
+                    },
+                    "Requisitos": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Requisito"
+                        }
+                    }
+                }
+            },
+            "Requisitos": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "Persona": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Requisito"
+                        }
+                    },
+                    "Empresa": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Requisito"
+                        }
+                    },
+                    "Vehiculo": {
+                        "description": "",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Requisito"
+                        }
+                    }
+                }
+            },
+            "RequisitosResponse": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "Status": {
+                        "$ref": "#/components/schemas/Response",
+                        "description": ""
+                    },
+                    "Data": {
+                        "$ref": "#/components/schemas/Requisitos",
+                        "description": ""
+                    }
+                }
+            }
+        }
+    }
+}
